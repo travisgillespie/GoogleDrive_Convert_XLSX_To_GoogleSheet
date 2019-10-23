@@ -65,11 +65,12 @@ function main() {
   range_UpdateFile1.setValues(values_NewFile)
 
   //update&format2: add link to folder where source file is located
-  var range_UpdateFile2 = sheet_UpdateFile.getRange("CELL A1 NOTATION e.g. HA1") //select a range beyond beyond the data you copied and pasted
+  var sourceDataColumn = arrayCounter+2
+  var range_UpdateFile2 = sheet_UpdateFile.getRange(1,sourceDataColumn) //getRange(row1, two columns to right of last copied data)
   range_UpdateFile2.setFormula('=HYPERLINK("'+root_salesOperations.getUrl()+'","Source Folder To: ./'+constant_FileName_SalesOrgTracker_XLSX+'")')
 
   //update&format3: add timestamp
-  var range_UpdateFile3 = sheet_UpdateFile.getRange("CELL A1 NOTATION e.g. HA2") //select a range beyond beyond the data you copied and pasted
+  var range_UpdateFile3 = sheet_UpdateFile.getRange(2,sourceDataColumn)
   range_UpdateFile3.setValue("Source File Last Updated: " + xlsxFile.getLastUpdated())
-  sheet_UpdateFile.getRange("A1 NOTATION e.g. HA1:HA2").setBackground("COLOR e.g. #999999")
+  sheet_UpdateFile.getRange(1,sourceDataColumn,2).setBackground("#999999") //getRange(row1, two columns to right of last copied data, total of two rows)
 }
